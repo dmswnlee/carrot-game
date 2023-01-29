@@ -18,36 +18,76 @@ button{
     height: 100%;
     background-image: url(./img/background.png);
     background-size: cover;
+}
+
+.popup{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 600PX;
+    height: 200PX;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.won-popup{
+    display: none;
+}
+
+.lost-popup{
+    display: none;
+}
+
+.replay-btn,
+.start-btn{
+    background-color: beige;
+    border: 3px solid #333;
+    border-radius: 10px;
+    transition: transform 500ms ease-out;
+    cursor: pointer;
+}
+
+
+.replay-btn{
+    width: 75px;
+    height: 75px;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.game-result{
+    color: #fff;
+    font-size: 50px;
+}
+
+.content{
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.content{
-    margin-top: 10px;
-    text-align: center;
-}
-
 .start-btn{
-    width: 55px;
-    height: 55px;
-    font-size: 24px;
-    background-color: beige;
-    border: 3px solid #333;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    transition: transform 500ms ease-out;
-    cursor: pointer;
+    width: 85px;
+    height: 85px;
+    font-size: 44px;
+    margin: 10px 0;
 }
 
-.start-btn:hover{
+.start-btn:hover,
+.replay-btn:hover{
     transform: scale(1.1);
 }
 
 .timer{
-    width: 140px;
-    height: 40px;
-    font-size: 24px;
+    width: 220px;
+    height: 90px;
+    font-size: 60px;
     background-color: #fff;
     border: 3px solid #333;
     border-radius: 10px;
@@ -55,12 +95,11 @@ button{
 }
 
 .count{
-    width: 55px;
-    height: 55px;
-    font-size: 40px;
+    width: 85px;
+    height: 85px;
+    font-size: 60px;
     color: #fff;
     background-color: coral;
     border: 3px solid #333;
     border-radius: 50%;
-    margin: auto;
 }
