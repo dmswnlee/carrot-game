@@ -18,6 +18,9 @@ button{
     height: 100%;
     background-image: url(./img/background.png);
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .popup{
@@ -103,3 +106,11 @@ button{
     border: 3px solid #333;
     border-radius: 50%;
 }
+
+.game-field{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-top: 80px;
+}
+

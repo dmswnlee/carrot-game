@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>carrot-game</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./main.js"></script>
+    <script src="./main.js" defer></script>
     <script src="https://kit.fontawesome.com/ed86da0847.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -20,12 +20,13 @@
         <p class="game-result">YOU LOST🤦‍♀️</p>
     </div>
 
-    <div class="bg">
+    <section class="bg">
         <div class="content">
             <button class="start-btn"><i class="fas fa-solid fa-play"></i></button>
             <p class="timer">00:00</p>
             <p class="count">0</p>
         </div>
-    </div>
+        <div class="game-field"></div>
+    </section>
 </body>
 </html>
