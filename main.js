@@ -1,17 +1,31 @@
 "use strict";
 
 const startBtn = document.querySelector('.start-btn');
+const timer = document.querySelector('.timer');
 const countNumber = document.querySelector('.count');
 const gameField = document.querySelector('.game-field');
 const fieldRect = gameField.getBoundingClientRect();
+const lost = document.querySelector('.lost-popup');
 
 const CARROT_SIZE = 80;
 
 function gameStart() {
     addItem('carrot', 10, 'img/carrot.png')
     addItem('bug', 10, 'img/bug.png')
+
     startBtn.innerHTML = '<i class="fas fa-solid fa-square"></i>';
     countNumber.innerText = 10;
+
+    let count = 10;
+    const limitTimer = setInterval(() => {
+        count --;
+        if(count <= 0){
+            lost.style.display = 'block';
+            clearInterval(limitTimer)
+        } 
+        timer.innerText = `0:${count}`
+    }, 1000);
+
 }
 
 function addItem(className, count, imgPath) {
@@ -36,6 +50,7 @@ function addItem(className, count, imgPath) {
 function randomPosition(min, max) {
     return Math.random() * (max - min) + min;
 }
+
 
 startBtn.addEventListener('click', gameStart)
 
