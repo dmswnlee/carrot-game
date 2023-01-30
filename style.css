@@ -35,10 +35,7 @@ button{
     border-radius: 20px;
 }
 
-.won-popup{
-    display: none;
-}
-
+.won-popup,
 .lost-popup{
     text-align: center;
     padding-top: 20px;
