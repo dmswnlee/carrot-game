@@ -44,6 +44,7 @@ function gameScore(e) {
         target.remove()
         if(score === 0){
             popup.style.display = 'block';
+            gameResult.innerText = 'YOU WON🎉';
             clearInterval(stopTimer)
             playSound(audioWon)
             stopSound(bgm)
