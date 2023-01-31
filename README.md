@@ -3,7 +3,7 @@
 
 🥕제작기간 
 
-230129 ~ 
+230129 ~ 230131
 
 <br>
 
@@ -36,4 +36,45 @@ HTML, CSS, JavaScript
     - 실패 시 팝업 뜰 때
     - 성공 시 팝업 뜰 때
     - 리플레이 할 때 효과음
+    
+<br>
+
+____
+
+<img src='https://github.com/dmswnlee/carrot-game/blob/main/img/01.png?raw=true' alt='carrot game' />
+
+* 게임 시작 전 첫 화면 
+
+<br>
+
+<img src='https://github.com/dmswnlee/carrot-game/blob/main/img/02.png?raw=true' alt='game start' />
+
+* 게임 시작 
+
+<br>
+
+<img src='https://github.com/dmswnlee/carrot-game/blob/main/img/03.png?raw=true' alt='game lost' />
+
+* 벌레 클릭 시 / 시간 초과 시 게임 실패 
+* 리플레이 버튼으로 게임 다시 시작 가능
+
+<br>
+
+<img src='https://github.com/dmswnlee/carrot-game/blob/main/img/04.png?raw=true' alt='game won' />
+
+* 제한시간 내 당근 모두 클릭 시 게임 성공 
+* 리플레이 버튼으로 게임 다시 시작 가능
+
+<br>
+
+<img src='https://github.com/dmswnlee/carrot-game/blob/main/img/05.png?raw=true' alt='game replay' />
+
+* 정지버튼 클릭 시 게임 다시 시작 가능 
+
+<br>
+
+___
+
+
+
 
