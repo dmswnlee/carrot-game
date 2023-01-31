@@ -8,6 +8,7 @@ const countNumber = document.querySelector('.count');
 const gameField = document.querySelector('.game-field');
 const fieldRect = gameField.getBoundingClientRect();
 const popup = document.querySelector('.popup');
+const gameResult = document.querySelector('.game-result');
 
 const CARROT_SIZE = 80;
 
@@ -21,6 +22,42 @@ const audioWon = new Audio('sound/game_win.mp3');
 const audioCarrot = new Audio('sound/carrot_pull.mp3');
 const audioBug = new Audio('sound/bug_pull.mp3');
 
+startBtn.addEventListener('click', gameStart)
+stopBtn.addEventListener('click', gameStop)
+replayBtn.addEventListener('click', () => {
+    score = 10;
+    count = 10;
+    timer.innerText = `0:${count}`
+    gameStart()
+    popup.style.display = 'none';
+    gameScore()
+    limitTimer()
+})
+gameField.addEventListener('click', gameScore)
+
+function gameScore(e) {
+    const target = e.target;
+    if (target.className == 'carrot') {
+        score--;
+        console.log(score);
+        countNumber.innerText = score;
+        target.remove()
+        if(score === 0){
+            popup.style.display = 'block';
+            clearInterval(stopTimer)
+            playSound(audioWon)
+            stopSound(bgm)
+        }
+        playSound(audioCarrot)
+    } else if(target.className == 'bug'){
+        popup.style.display = 'block';
+        gameResult.innerText = 'YOU LOST🤦‍♀️';
+        clearInterval(stopTimer)
+        playSound(audioBug)
+        stopSound(bgm)
+    }
+}
+
 function gameStart() {
     gameInit()
     stopBtn.style.display = 'block';
@@ -32,9 +69,7 @@ function gameStart() {
 function gameStop(){
     clearInterval(stopTimer)
     popup.style.display = 'block'
-    popup.innerHTML = `
-    <button class="replay-btn"><i class="fa fa-solid fa-rotate-right"></i></button>
-    <p class="game-result">Replay❓</p>`
+    gameResult.innerText = 'Replay❓';
     playSound(audioReplay)
     stopSound(bgm)
 }
@@ -54,10 +89,7 @@ function limitTimer() {
             count --;
             if(count <= 0){
                 popup.style.display = 'block';
-                popup.innerHTML = `
-                <button class="replay-btn"><i class="fa fa-solid fa-rotate-right"></i></button>
-                <p class="game-result">YOU LOST🤦‍♀️</p>
-                `
+                gameResult.innerText = 'YOU LOST🤦‍♀️';
                 clearInterval(stopTimer);
                 playSound(audioBug)
                 stopSound(bgm)
@@ -95,32 +127,7 @@ function randomPosition(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-gameField.addEventListener('click', (e) => {
-    const target = e.target;
-    if (target.className == 'carrot') {
-        score--;
-        console.log(score);
-        countNumber.innerText = score;
-        target.remove()
-        if(score === 0){
-            popup.style.display = 'block';
-            clearInterval(stopTimer)
-            playSound(audioWon)
-            stopSound(bgm)
-        }
-        playSound(audioCarrot)
-    } else if(target.className == 'bug'){
-        popup.style.display = 'block';
-        popup.innerHTML = `
-        <button class="replay-btn"><i class="fa fa-solid fa-rotate-right"></i></button>
-        <p class="game-result">YOU LOST🤦‍♀️</p>`
-        clearInterval(stopTimer)
-        playSound(audioBug)
-        stopSound(bgm)
-    }
-})
 
-startBtn.addEventListener('click', gameStart)
-stopBtn.addEventListener('click', gameStop)
-replayBtn.addEventListener('click', () => {console.log(1)})
+
+
 
