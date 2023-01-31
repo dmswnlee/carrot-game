@@ -13,6 +13,8 @@ const replay = document.querySelector('.replay-popup');
 
 const CARROT_SIZE = 80;
 
+const bgm = new Audio();
+
 function gameStart() {
     addItem('carrot', 10, 'img/carrot.png')
     addItem('bug', 10, 'img/bug.png')
@@ -21,6 +23,9 @@ function gameStart() {
     countNumber.innerText = 10;
     
     limitTimer();
+
+    bgm.src = 'sound/bg.mp3';
+    bgm.play()
 }
 
 let count = 10;
@@ -33,9 +38,14 @@ function limitTimer() {
             if(count <= 0){
                 lost.style.display = 'block';
                 clearInterval(stopTimer);
+
+                const audioTimeOver = new Audio();
+                audioTimeOver.src = 'sound/bug_pull.mp3'
+                audioTimeOver.play()
+                bgm.pause()
             } 
             timer.innerText = `0:${count}`
-        },1000)
+    },1000)
 }
 
 function addItem(className, count, imgPath) {
@@ -64,6 +74,11 @@ function randomPosition(min, max) {
 function gameStop(){
     clearInterval(stopTimer)
     replay.style.display = 'block'
+
+    const audioReplay = new Audio()
+    audioReplay.src = 'sound/alert.wav'
+    audioReplay.play()
+    bgm.pause()
 }
 
 let score = 10;
@@ -78,15 +93,27 @@ gameField.addEventListener('click', (e) => {
         if(score === 0){
             won.style.display = 'block';
             clearInterval(stopTimer)
+
+            const audioWon = new Audio();
+            audioWon.src = 'sound/game_win.mp3'
+            audioWon.play()
+            bgm.pause()
         }
+        
+        const audioCarrot = new Audio();
+        audioCarrot.src = 'sound/carrot_pull.mp3'
+        audioCarrot.play()
     } else if(target.className == 'bug'){
         lost.style.display = 'block';
         clearInterval(stopTimer)
+
+        const audioLost = new Audio();
+        audioLost.src = 'sound/bug_pull.mp3'
+        audioLost.play()
+        bgm.pause()
     }
 })
 
 startBtn.addEventListener('click', gameStart)
 stopBtn.addEventListener('click', gameStop)
-
-
 
