@@ -7,45 +7,69 @@ const timer = document.querySelector('.timer');
 const countNumber = document.querySelector('.count');
 const gameField = document.querySelector('.game-field');
 const fieldRect = gameField.getBoundingClientRect();
-const lost = document.querySelector('.lost-popup');
-const won = document.querySelector('.won-popup');
-const replay = document.querySelector('.replay-popup');
+const popup = document.querySelector('.popup');
 
 const CARROT_SIZE = 80;
 
-const bgm = new Audio();
-
-function gameStart() {
-    addItem('carrot', 10, 'img/carrot.png')
-    addItem('bug', 10, 'img/bug.png')
-
-    stopBtn.style.display = 'block';
-    countNumber.innerText = 10;
-    
-    limitTimer();
-
-    bgm.src = 'sound/bg.mp3';
-    bgm.play()
-}
-
 let count = 10;
 let stopTimer;
+let score = 10;
+
+const bgm = new Audio('sound/bg.mp3');
+const audioReplay = new Audio('sound/alert.wav');
+const audioWon = new Audio('sound/game_win.mp3');
+const audioCarrot = new Audio('sound/carrot_pull.mp3');
+const audioBug = new Audio('sound/bug_pull.mp3');
+
+function gameStart() {
+    gameInit()
+    stopBtn.style.display = 'block';
+    countNumber.innerText = 10;
+    limitTimer();
+    playSound(bgm)
+}
+
+function gameStop(){
+    clearInterval(stopTimer)
+    popup.style.display = 'block'
+    popup.innerHTML = `
+    <button class="replay-btn"><i class="fa fa-solid fa-rotate-right"></i></button>
+    <p class="game-result">Replay❓</p>`
+    playSound(audioReplay)
+    stopSound(bgm)
+}
+
+function playSound(sound){
+    sound.currentTime = 0;
+    sound.play()
+}
+
+function stopSound(sound){
+    sound.pause()
+}
 
 function limitTimer() {
     stopTimer = setInterval(() => {
             console.log(count);
             count --;
             if(count <= 0){
-                lost.style.display = 'block';
+                popup.style.display = 'block';
+                popup.innerHTML = `
+                <button class="replay-btn"><i class="fa fa-solid fa-rotate-right"></i></button>
+                <p class="game-result">YOU LOST🤦‍♀️</p>
+                `
                 clearInterval(stopTimer);
-
-                const audioTimeOver = new Audio();
-                audioTimeOver.src = 'sound/bug_pull.mp3'
-                audioTimeOver.play()
-                bgm.pause()
+                playSound(audioBug)
+                stopSound(bgm)
             } 
             timer.innerText = `0:${count}`
     },1000)
+}
+
+function gameInit(){
+    gameField.innerHTML = '';
+    addItem('carrot', 10, 'img/carrot.png')
+    addItem('bug', 10, 'img/bug.png')
 }
 
 function addItem(className, count, imgPath) {
@@ -71,18 +95,6 @@ function randomPosition(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-function gameStop(){
-    clearInterval(stopTimer)
-    replay.style.display = 'block'
-
-    const audioReplay = new Audio()
-    audioReplay.src = 'sound/alert.wav'
-    audioReplay.play()
-    bgm.pause()
-}
-
-let score = 10;
-
 gameField.addEventListener('click', (e) => {
     const target = e.target;
     if (target.className == 'carrot') {
@@ -91,29 +103,24 @@ gameField.addEventListener('click', (e) => {
         countNumber.innerText = score;
         target.remove()
         if(score === 0){
-            won.style.display = 'block';
+            popup.style.display = 'block';
             clearInterval(stopTimer)
-
-            const audioWon = new Audio();
-            audioWon.src = 'sound/game_win.mp3'
-            audioWon.play()
-            bgm.pause()
+            playSound(audioWon)
+            stopSound(bgm)
         }
-        
-        const audioCarrot = new Audio();
-        audioCarrot.src = 'sound/carrot_pull.mp3'
-        audioCarrot.play()
+        playSound(audioCarrot)
     } else if(target.className == 'bug'){
-        lost.style.display = 'block';
+        popup.style.display = 'block';
+        popup.innerHTML = `
+        <button class="replay-btn"><i class="fa fa-solid fa-rotate-right"></i></button>
+        <p class="game-result">YOU LOST🤦‍♀️</p>`
         clearInterval(stopTimer)
-
-        const audioLost = new Audio();
-        audioLost.src = 'sound/bug_pull.mp3'
-        audioLost.play()
-        bgm.pause()
+        playSound(audioBug)
+        stopSound(bgm)
     }
 })
 
 startBtn.addEventListener('click', gameStart)
 stopBtn.addEventListener('click', gameStop)
+replayBtn.addEventListener('click', () => {console.log(1)})
 
