@@ -1,12 +1,15 @@
 "use strict";
 
 const startBtn = document.querySelector('.start-btn');
+const stopBtn = document.querySelector('.stop-btn');
+const replayBtn = document.querySelector('.replay-btn');
 const timer = document.querySelector('.timer');
 const countNumber = document.querySelector('.count');
 const gameField = document.querySelector('.game-field');
 const fieldRect = gameField.getBoundingClientRect();
 const lost = document.querySelector('.lost-popup');
 const won = document.querySelector('.won-popup');
+const replay = document.querySelector('.replay-popup');
 
 const CARROT_SIZE = 80;
 
@@ -14,7 +17,7 @@ function gameStart() {
     addItem('carrot', 10, 'img/carrot.png')
     addItem('bug', 10, 'img/bug.png')
 
-    startBtn.innerHTML = '<i class="fas fa-solid fa-square"></i>';
+    stopBtn.style.display = 'block';
     countNumber.innerText = 10;
     
     limitTimer();
@@ -58,7 +61,10 @@ function randomPosition(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-startBtn.addEventListener('click', gameStart)
+function gameStop(){
+    clearInterval(stopTimer)
+    replay.style.display = 'block'
+}
 
 let score = 10;
 
@@ -73,8 +79,14 @@ gameField.addEventListener('click', (e) => {
             won.style.display = 'block';
             clearInterval(stopTimer)
         }
+    } else if(target.className == 'bug'){
+        lost.style.display = 'block';
+        clearInterval(stopTimer)
     }
 })
+
+startBtn.addEventListener('click', gameStart)
+stopBtn.addEventListener('click', gameStop)
 
 
 
