@@ -11,10 +11,12 @@ const popup = document.querySelector('.popup');
 const gameResult = document.querySelector('.game-result');
 
 const CARROT_SIZE = 80;
+const GAME_TIME = 10;
+const CARROT_SCORE = 10;
 
-let count = 10;
+let count = GAME_TIME;
 let stopTimer;
-let score = 10;
+let score = CARROT_SCORE;
 
 const bgm = new Audio('sound/bg.mp3');
 const audioReplay = new Audio('sound/alert.wav');
@@ -25,8 +27,8 @@ const audioBug = new Audio('sound/bug_pull.mp3');
 startBtn.addEventListener('click', gameStart)
 stopBtn.addEventListener('click', gameStop)
 replayBtn.addEventListener('click', () => {
-    score = 10;
-    count = 10;
+    score = CARROT_SCORE;
+    count = GAME_TIME;
     timer.innerText = `0:${count}`
     gameStart()
     popup.style.display = 'none';
@@ -62,7 +64,7 @@ function gameScore(e) {
 function gameStart() {
     gameInit()
     stopBtn.style.display = 'block';
-    countNumber.innerText = 10;
+    countNumber.innerText = GAME_TIME;
     limitTimer();
     playSound(bgm)
 }
