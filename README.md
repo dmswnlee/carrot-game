@@ -1,6 +1,4 @@
 # carrot-game
- 
-
 🥕제작기간 
 
 230129 ~ 230131
@@ -16,6 +14,10 @@
 🥕사용기술
 
 HTML, CSS, JavaScript
+
+<br>
+
+🥕 https://dmswnlee.github.io/carrot-game/
 
 <br>
 
