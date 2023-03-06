@@ -1,5 +1,6 @@
 # carrot-game
-### 개인프로젝트 - 벌레를 피해 당근을 안전하게 수확하자 (https://dmswnlee.github.io/carrot-game/)
+### 개인프로젝트
+### 벌레를 피해 당근을 안전하게 수확하자 (https://dmswnlee.github.io/carrot-game/)
 
 <br>
 
