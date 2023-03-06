@@ -1,23 +1,17 @@
 # carrot-game
+### 개인프로젝트 - 벌레를 피해 당근을 안전하게 수확하자 (https://dmswnlee.github.io/carrot-game/)
+
+<br>
+
 🥕제작기간 
 
 230129 ~ 230131
 
 <br>
 
-🥕게임소개
-
-벌레를 피해 당근을 안전하게 수확하자 
-
-<br>
-
 🥕사용기술
 
 HTML, CSS, JavaScript
-
-<br>
-
-🥕 https://dmswnlee.github.io/carrot-game/
 
 <br>
 
